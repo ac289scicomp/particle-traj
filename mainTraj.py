@@ -82,6 +82,14 @@ for i in range(lengthPart):
     particleArr[i].ax = accel[0]
     particleArr[i].ay = accel[1]
     particleArr[i].az = accel[2]
+    
+dt = .1
+totalT = 5
+currentT = 0
+
+while currentT < totalT:
+    for i in range(lengthPart):
+    
 
 
     
