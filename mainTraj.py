@@ -89,6 +89,24 @@ currentT = 0
 
 while currentT < totalT:
     for i in range(lengthPart):
+        workPart = particleArr[i]
+        
+        workPart.x = workPart.x + (workPart.vx * dt) + ((1/2) * workPart.ax * np.power(dt, 2))
+        workPart.y = workPart.y + (workPart.vy * dt) + ((1/2) * workPart.ay * np.power(dt, 2))
+        workPart.z = workPart.z + (workPart.vz * dt) + ((1/2) * workPart.az * np.power(dt, 2))
+        
+        accelPrev = np.array([workPart.ax, workPart.ay, workPart.az])
+        accel = addAcceleration(particleArr, i)
+        
+        workPart.ax = accel[0]
+        workPart.ay = accel[1]
+        workPart.az = accel[2]
+        
+        workPart.vx = workPart.vx + ((1/2) * (workPart.ax + (accelPrev[0] + workPart.ax)) * dt)
+        workPart.vy = workPart.vy + ((1/2) * (workPart.ay + (accelPrev[1] + workPart.ay)) * dt)
+        workPart.vz = workPart.vz + ((1/2) * (workPart.az + (accelPrev[2] + workPart.az)) * dt)
+
+    currentT += dt
     
 
 
